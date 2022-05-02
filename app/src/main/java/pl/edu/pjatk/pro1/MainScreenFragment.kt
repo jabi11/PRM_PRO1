@@ -39,6 +39,10 @@ class MainScreenFragment : Fragment() {
             it.layoutManager = LinearLayoutManager(requireContext())
         }
 
+        binding.addBtn.setOnClickListener {
+            (activity as? Navigable)?.navigate(Navigable.Destination.Add)
+        }
+
     }
 
 }
