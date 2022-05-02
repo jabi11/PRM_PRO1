@@ -7,20 +7,28 @@
     tools:context=".MainScreenFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/addTodoBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/todo_item" />
 
     <Button
         android:id="@+id/addTodoBtn"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add todo"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="409dp" />
+        android:layout_marginTop="10dp"
+        android:text="Add"
+        app:icon="@android:drawable/ic_menu_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskList" />
 </androidx.constraintlayout.widget.ConstraintLayout>
