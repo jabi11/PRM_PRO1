@@ -17,10 +17,7 @@ class TaskViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(bin
 }
 
 class TasksAdapter : RecyclerView.Adapter<TaskViewHolder>() {
-    private val data = mutableListOf<ToDoTask>(
-        ToDoTask("zjesc obiad", 1, 0.0f, LocalDate.parse("2022-05-02")),
-        ToDoTask("wyjsc z domu", 2, 0.5f, LocalDate.parse("2022-05-02"))
-    )
+    private val data = mutableListOf<ToDoTask>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val binding = TodoItemBinding.inflate(
             LayoutInflater.from(parent.context),
