@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity(), Navigable {
                     replace(R.id.container, AddEditScreenFragment(), AddEditScreenFragment::class.java.name)
                     addToBackStack(AddEditScreenFragment::class.java.name)
                 }
+                Navigable.Destination.Detail -> {
+                    replace(R.id.container, TaskDetailFragment(), TaskDetailFragment::class.java.name)
+                    addToBackStack(TaskDetailFragment::class.java.name)
+                }
             }
         }.commit()
     }

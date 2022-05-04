@@ -18,13 +18,22 @@ class TaskViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(bin
 
 class TasksAdapter : RecyclerView.Adapter<TaskViewHolder>() {
     private val data = mutableListOf<ToDoTask>()
+    private var selectedPosition: Int = 0
+    val selectedTask: ToDoTask
+        get() = data[selectedPosition]
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val binding = TodoItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return TaskViewHolder(binding)
+        return TaskViewHolder(binding).also { vh ->
+            binding.root.setOnClickListener {
+                notifyItemChanged(selectedPosition)
+                selectedPosition = vh.layoutPosition
+                DataSource.selectedTaskId = data[selectedPosition].id
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {

@@ -30,12 +30,16 @@ class AddEditScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btn.setOnClickListener {
-            DataSource.tasks.add(ToDoTask(
-                binding.taskTextInput.text.toString(),
-                binding.priorityTextInput.text.toString().toInt(),
-                binding.progressTextInput.text.toString().toDouble(),
-                LocalDate.parse(binding.deadlineTextInput.text)
-            ))
+            val maxId = DataSource.tasks.maxByOrNull { it.id }?.id
+            if (maxId != null) {
+                DataSource.tasks.add(ToDoTask(
+                    maxId + 1,
+                    binding.taskTextInput.text.toString(),
+                    binding.priorityTextInput.text.toString().toInt(),
+                    binding.progressTextInput.text.toString().toDouble(),
+                    LocalDate.parse(binding.deadlineTextInput.text)
+                ))
+            }
             (activity as? Navigable)?.navigate(Navigable.Destination.List)
         }
     }
