@@ -21,21 +21,11 @@
         android:id="@+id/DeadlineLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/ProgressLabel" />
-
-    <TextView
-        android:id="@+id/ProgressLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/PriorityLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/ProgressTextField" />
 
     <TextView
         android:id="@+id/taskLabel"
@@ -85,4 +75,16 @@
         android:text="Deadline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/ProgressTextField"
+        android:layout_width="75dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/PriorityLabel" />
 </androidx.constraintlayout.widget.ConstraintLayout>

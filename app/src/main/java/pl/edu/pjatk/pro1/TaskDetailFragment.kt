@@ -21,8 +21,14 @@ class TaskDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return FragmentTaskDetailBinding.inflate(inflater, container, false).also {
-            binding = it
+        return FragmentTaskDetailBinding.inflate(inflater, container, false).also { fragmentTaskDetailBinding ->
+            binding = fragmentTaskDetailBinding
+            val selected: ToDoTask = DataSource.tasks.first { it.id.equals(DataSource.selectedTaskId) }
+            binding.taskLabel.text = selected.name
+            binding.DeadlineLabel.text = selected.deadline.toString()
+            binding.PriorityLabel.text = selected.priority.toString()
+            binding.ProgressTextField.setText(selected.progress.toString())
+
         }.root
     }
 
