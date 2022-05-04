@@ -2,6 +2,7 @@ package pl.edu.pjatk.pro1
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import pl.edu.pjatk.pro1.databinding.FragmentMainScreenBinding
 import pl.edu.pjatk.pro1.databinding.TodoItemBinding
@@ -16,7 +17,11 @@ class TaskViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(bin
     }
 }
 
-class TasksAdapter : RecyclerView.Adapter<TaskViewHolder>() {
+class TasksAdapter(Activity: FragmentActivity?) : RecyclerView.Adapter<TaskViewHolder>() {
+    private var activity: FragmentActivity? = null;
+    init {
+        activity = Activity
+    }
     private val data = mutableListOf<ToDoTask>()
     private var selectedPosition: Int = 0
     val selectedTask: ToDoTask
@@ -32,6 +37,7 @@ class TasksAdapter : RecyclerView.Adapter<TaskViewHolder>() {
                 notifyItemChanged(selectedPosition)
                 selectedPosition = vh.layoutPosition
                 DataSource.selectedTaskId = data[selectedPosition].id
+                (activity as? Navigable)?.navigate(Navigable.Destination.Detail)
             }
         }
     }

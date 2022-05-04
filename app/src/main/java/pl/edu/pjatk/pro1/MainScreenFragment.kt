@@ -30,7 +30,7 @@ class MainScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = TasksAdapter().apply {
+        adapter = TasksAdapter(activity).apply {
             replace(DataSource.tasks)
         }
 
