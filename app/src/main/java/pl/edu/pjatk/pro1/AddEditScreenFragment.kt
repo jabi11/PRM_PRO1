@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import pl.edu.pjatk.pro1.databinding.FragmentAddEditScreenBinding
-import pl.edu.pjatk.pro1.databinding.FragmentMainScreenBinding
+import java.time.LocalDate
 
 
 class AddEditScreenFragment : Fragment() {
@@ -25,6 +25,19 @@ class AddEditScreenFragment : Fragment() {
         return FragmentAddEditScreenBinding.inflate(inflater, container, false).also {
             binding = it
         }.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btn.setOnClickListener {
+            DataSource.tasks.add(ToDoTask(
+                binding.taskTextInput.text.toString(),
+                binding.priorityTextInput.text.toString().toInt(),
+                binding.progressTextInput.text.toString().toDouble(),
+                LocalDate.parse(binding.deadlineTextInput.text)
+            ))
+            (activity as? Navigable)?.navigate(Navigable.Destination.List)
+        }
     }
 
 }

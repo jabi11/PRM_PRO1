@@ -6,6 +6,6 @@ import java.util.*
 class ToDoTask(
     val name: String,
     val priority: Int,
-    val progress: Float,
+    val progress: Double,
     val deadline: LocalDate
 )

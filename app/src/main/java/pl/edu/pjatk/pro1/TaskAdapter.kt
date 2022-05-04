@@ -12,7 +12,7 @@ class TaskViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(bin
         binding.NameLabel.text = task.name
         binding.deadlineLabel.text = task.deadline.toString()
         binding.priorityLabel.text = task.priority.toString()
-        binding.progressLabel.text = (task.progress * 100).toString() + "%"
+        binding.progressLabel.text = task.progress.toString() + "%"
     }
 }
 
