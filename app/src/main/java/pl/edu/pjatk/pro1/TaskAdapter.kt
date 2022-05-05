@@ -58,7 +58,8 @@ class TasksAdapter(Activity: FragmentActivity?) : RecyclerView.Adapter<TaskViewH
 
     fun replace(newData: List<ToDoTask>) {
         data.clear()
-        data.addAll(newData)
+        val filteredData = newData.filter { it.deadline.isAfter(LocalDate.now()) }
+        data.addAll(filteredData)
         notifyDataSetChanged()
     }
 }
