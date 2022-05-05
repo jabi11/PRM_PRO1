@@ -12,6 +12,7 @@ import androidx.core.os.bundleOf
 import pl.edu.pjatk.pro1.databinding.FragmentMainScreenBinding
 import pl.edu.pjatk.pro1.databinding.FragmentTaskDetailBinding
 import java.util.*
+import java.util.function.Predicate
 
 class TaskDetailFragment : Fragment() {
 
@@ -38,10 +39,9 @@ class TaskDetailFragment : Fragment() {
             binding.ProgressTextField.addTextChangedListener(object : TextWatcher {
 
                 override fun afterTextChanged(s: Editable) {
-                    val newTask = ToDoTask(selected.id, selected.name, selected.priority, s.toString().toDouble(), selected.deadline)
-                    DataSource.tasks.remove(selected)
-                    DataSource.tasks.add(newTask)
-                    Log.println(Log.INFO, null, "REPLACED")
+                    DataSource.tasks.find { it.id == selected.id }?.progress = s.toString().toDouble()
+
+                    Log.println(Log.INFO, null, DataSource.tasks.toString())
                 }
 
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

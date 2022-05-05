@@ -7,6 +7,6 @@ class ToDoTask(
     val id: Int,
     val name: String,
     val priority: Int,
-    val progress: Double,
+    var progress: Double,
     val deadline: LocalDate
 )
