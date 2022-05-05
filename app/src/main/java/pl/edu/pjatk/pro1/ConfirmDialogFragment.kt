@@ -9,21 +9,22 @@ import androidx.fragment.app.DialogFragment
 import kotlinx.coroutines.NonCancellable.start
 
 
-class ConfirmDialogFragment : DialogFragment() {
+class ConfirmDialogFragment(val Todotask: ToDoTask, val adapter: TasksAdapter) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)
             builder.setMessage("Do you want to delete this task?")
-                .setPositiveButton("Yes",
-                    DialogInterface.OnClickListener { dialog, id ->
-
-                    })
-                .setNegativeButton("No",
-                    DialogInterface.OnClickListener { dialog, id ->
-                        // User cancelled the dialog
-                    })
+                .setPositiveButton("Yes"
+                ) { dialog, id ->
+                    DataSource.tasks.remove(Todotask)
+                    adapter.replace(DataSource.tasks)
+                }
+                .setNegativeButton("No"
+                ) { dialog, id ->
+                    // User cancelled the dialog
+                }
             // Create the AlertDialog object and return it
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")

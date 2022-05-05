@@ -41,7 +41,7 @@ class TasksAdapter(Activity: FragmentActivity?) : RecyclerView.Adapter<TaskViewH
                 (activity as? Navigable)?.navigate(Navigable.Destination.Detail)
             }
             binding.root.setOnLongClickListener{
-                val newFragment = ConfirmDialogFragment()
+                val newFragment = ConfirmDialogFragment(selectedTask, this)
                 newFragment.show(activity!!.supportFragmentManager, "confirm")
                 return@setOnLongClickListener true
             }
