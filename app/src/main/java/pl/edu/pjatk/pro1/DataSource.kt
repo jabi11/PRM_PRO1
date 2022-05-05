@@ -3,6 +3,7 @@ package pl.edu.pjatk.pro1
 import java.time.LocalDate
 
 object DataSource {
+    var edit = false
     var selectedTaskId: Int = 0
     val tasks = mutableListOf<ToDoTask>(
         ToDoTask(0, "zjesc obiad", 1, 0.0, LocalDate.parse("2022-05-02")),

@@ -40,6 +40,7 @@ class MainScreenFragment : Fragment() {
         }
 
         binding.addBtn.setOnClickListener {
+            DataSource.edit = false
             (activity as? Navigable)?.navigate(Navigable.Destination.Add)
         }
 

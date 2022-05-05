@@ -29,16 +29,35 @@ class AddEditScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (DataSource.edit) {
+            val selected: ToDoTask = DataSource.tasks.first { it.id == DataSource.selectedTaskId }
+            binding.taskTextInput.setText(selected.name)
+            binding.deadlineTextInput.setText(selected.deadline.toString())
+            binding.progressTextInput.setText(selected.progress.toString())
+            binding.priorityTextInput.setText(selected.priority.toString())
+        }
         binding.btn.setOnClickListener {
             val maxId = DataSource.tasks.maxByOrNull { it.id }?.id
             if (maxId != null) {
-                DataSource.tasks.add(ToDoTask(
-                    maxId + 1,
-                    binding.taskTextInput.text.toString(),
-                    binding.priorityTextInput.text.toString().toInt(),
-                    binding.progressTextInput.text.toString().toDouble(),
-                    LocalDate.parse(binding.deadlineTextInput.text)
-                ))
+                if(DataSource.edit) {
+                    val selected: ToDoTask = DataSource.tasks.first { it.id == DataSource.selectedTaskId }
+                    DataSource.tasks.remove(selected)
+                    DataSource.tasks.add(ToDoTask(
+                        selected.id,
+                        binding.taskTextInput.text.toString(),
+                        binding.priorityTextInput.text.toString().toInt(),
+                        binding.progressTextInput.text.toString().toDouble(),
+                        LocalDate.parse(binding.deadlineTextInput.text)
+                    ))
+                } else {
+                    DataSource.tasks.add(ToDoTask(
+                        maxId + 1,
+                        binding.taskTextInput.text.toString(),
+                        binding.priorityTextInput.text.toString().toInt(),
+                        binding.progressTextInput.text.toString().toDouble(),
+                        LocalDate.parse(binding.deadlineTextInput.text)
+                    ))
+                }
             }
             (activity as? Navigable)?.navigate(Navigable.Destination.List)
         }

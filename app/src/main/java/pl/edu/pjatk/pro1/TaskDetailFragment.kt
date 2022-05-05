@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import pl.edu.pjatk.pro1.databinding.FragmentTaskDetailBinding
 
 class TaskDetailFragment : Fragment() {
@@ -28,7 +29,10 @@ class TaskDetailFragment : Fragment() {
             binding.DeadlineLabel.text = selected.deadline.toString()
             binding.PriorityLabel.text = selected.priority.toString()
             binding.ProgressTextField.setText(selected.progress.toString())
-
+            binding.editButton.setOnClickListener {
+                DataSource.edit = true
+                (activity as? Navigable)?.navigate(Navigable.Destination.Add)
+            }
         }.root
     }
 
