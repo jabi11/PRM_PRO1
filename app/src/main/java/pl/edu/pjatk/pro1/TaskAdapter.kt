@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import pl.edu.pjatk.pro1.databinding.FragmentMainScreenBinding
 import pl.edu.pjatk.pro1.databinding.TodoItemBinding
+import java.time.DayOfWeek
 import java.time.LocalDate
 
 class TaskViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -18,7 +19,7 @@ class TaskViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(bin
     }
 }
 
-class TasksAdapter(Activity: FragmentActivity?) : RecyclerView.Adapter<TaskViewHolder>() {
+class TasksAdapter(Activity: FragmentActivity?, val mainScreenBinding: FragmentMainScreenBinding) : RecyclerView.Adapter<TaskViewHolder>() {
     private var activity: FragmentActivity? = null;
     init {
         activity = Activity
@@ -59,6 +60,11 @@ class TasksAdapter(Activity: FragmentActivity?) : RecyclerView.Adapter<TaskViewH
     fun replace(newData: List<ToDoTask>) {
         data.clear()
         val filteredData = newData.filter { it.deadline.isAfter(LocalDate.now()) }
+        val now = LocalDate.now()
+        val startOfWeek = now.with(DayOfWeek.MONDAY)
+        val endOfWeek = now.with(DayOfWeek.SUNDAY)
+        val thisWeekTasks = filteredData.filter { it.deadline.isAfter(startOfWeek) && it.deadline.isBefore(endOfWeek) }
+        mainScreenBinding.tasksAmountLabel.text = thisWeekTasks.size.toString()
         data.addAll(filteredData)
         notifyDataSetChanged()
     }

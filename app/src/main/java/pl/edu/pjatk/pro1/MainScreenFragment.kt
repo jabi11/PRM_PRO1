@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import pl.edu.pjatk.pro1.databinding.FragmentMainScreenBinding
+import java.time.DayOfWeek
+import java.time.LocalDate
 
 class MainScreenFragment : Fragment() {
 
@@ -30,7 +32,7 @@ class MainScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = TasksAdapter(activity).apply {
+        adapter = TasksAdapter(activity, binding).apply {
             replace(DataSource.tasks)
         }
 
