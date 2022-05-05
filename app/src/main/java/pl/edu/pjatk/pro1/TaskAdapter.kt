@@ -2,6 +2,7 @@ package pl.edu.pjatk.pro1
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import pl.edu.pjatk.pro1.databinding.FragmentMainScreenBinding
@@ -38,6 +39,11 @@ class TasksAdapter(Activity: FragmentActivity?) : RecyclerView.Adapter<TaskViewH
                 selectedPosition = vh.layoutPosition
                 DataSource.selectedTaskId = data[selectedPosition].id
                 (activity as? Navigable)?.navigate(Navigable.Destination.Detail)
+            }
+            binding.root.setOnLongClickListener{
+                val newFragment = ConfirmDialogFragment()
+                newFragment.show(activity!!.supportFragmentManager, "confirm")
+                return@setOnLongClickListener true
             }
         }
     }
