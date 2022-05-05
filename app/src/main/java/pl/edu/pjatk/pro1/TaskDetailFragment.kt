@@ -39,9 +39,13 @@ class TaskDetailFragment : Fragment() {
             binding.ProgressTextField.addTextChangedListener(object : TextWatcher {
 
                 override fun afterTextChanged(s: Editable) {
-                    DataSource.tasks.find { it.id == selected.id }?.progress = s.toString().toDouble()
+                    if (s.toString().isNotEmpty()) {
+                        DataSource.tasks.find { it.id == selected.id }?.progress =
+                            s.toString().toDouble()
+                        (activity as MainActivity).adapter.replace(DataSource.tasks)
 
-                    Log.println(Log.INFO, null, DataSource.tasks.toString())
+                        Log.println(Log.INFO, null, DataSource.tasks.toString())
+                    }
                 }
 
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

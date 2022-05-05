@@ -36,6 +36,8 @@ class MainScreenFragment : Fragment() {
             replace(DataSource.tasks)
         }
 
+        (activity as MainActivity).adapter = adapter
+
         binding.taskList.let {
             it.adapter = adapter
             it.layoutManager = LinearLayoutManager(requireContext())
