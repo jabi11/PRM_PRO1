@@ -63,11 +63,11 @@ class TasksAdapter(Activity: FragmentActivity?, val mainScreenBinding: FragmentM
         val filteredData = newData.filter { it.deadline.isAfter(LocalDate.now()) || it.deadline == LocalDate.now()  }
         val now = LocalDate.now()
         val startOfWeek = now.with(DayOfWeek.MONDAY)
-        Log.println(Log.INFO, null, startOfWeek.toString())
+        //Log.println(Log.INFO, null, startOfWeek.toString())
         val endOfWeek = startOfWeek.plusDays(6)
-        Log.println(Log.INFO, null, endOfWeek.toString())
+        //Log.println(Log.INFO, null, endOfWeek.toString())
         val thisWeekTasks = filteredData.filter { (it.deadline.isAfter(startOfWeek) && it.deadline.isBefore(endOfWeek)) || it.deadline == endOfWeek }
-        Log.println(Log.INFO, null, thisWeekTasks.toString())
+        //Log.println(Log.INFO, null, thisWeekTasks.toString())
         mainScreenBinding.tasksAmountLabel.text = thisWeekTasks.size.toString()
         data.addAll(filteredData)
         notifyDataSetChanged()
