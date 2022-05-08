@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/DeadlineLabel" />
 
     <ProgressBar
-        android:id="@+id/background_progressbar"
+        android:id="@+id/backgroundProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="209dp"
         android:layout_height="199dp"
