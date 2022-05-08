@@ -35,6 +35,7 @@ class TaskDetailFragment : Fragment() {
             binding.DeadlineLabel.text = selected.deadline.toString()
             binding.PriorityLabel.text = selected.priority.toString()
             binding.ProgressTextField.setText(selected.progress.toString())
+            binding.taskProgressBar.setProgress(selected.progress.toInt())
 
             binding.ProgressTextField.addTextChangedListener(object : TextWatcher {
 
@@ -42,6 +43,8 @@ class TaskDetailFragment : Fragment() {
                     if (s.toString().isNotEmpty()) {
                         DataSource.tasks.find { it.id == selected.id }?.progress =
                             s.toString().toDouble()
+                        selected.progress = s.toString().toDouble()
+                        binding.taskProgressBar.setProgress(selected.progress.toInt())
                         (activity as MainActivity).adapter.replace(DataSource.tasks)
 
                         Log.println(Log.INFO, null, DataSource.tasks.toString())
