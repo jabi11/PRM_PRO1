@@ -59,6 +59,7 @@ class AddEditScreenFragment : Fragment() {
                     ))
                 }
             }
+            (activity as MainActivity).adapter.replace(DataSource.tasks)
             (activity as? Navigable)?.navigate(Navigable.Destination.List)
         }
     }

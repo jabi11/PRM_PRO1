@@ -9,6 +9,7 @@ object DataSource {
         ToDoTask(0, "zjesc obiad", 1, 0.0, LocalDate.parse("2022-05-02")),
         ToDoTask(1,"wyjsc z domu", 2, 0.5, LocalDate.parse("2022-05-02")),
         ToDoTask(2,"wyjsc na uczelnie", 2, 0.5, LocalDate.parse("2023-05-02")),
-        ToDoTask(1,"wyjsc z domu", 2, 0.5, LocalDate.parse("2022-05-06")),
+        ToDoTask(3,"wyjsc z domu", 2, 0.5, LocalDate.parse("2022-05-08")),
+        ToDoTask(4,"wyjsc z domu", 2, 0.5, LocalDate.parse("2022-05-09")),
     )
 }

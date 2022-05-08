@@ -1,5 +1,6 @@
 package pl.edu.pjatk.pro1
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
@@ -59,11 +60,14 @@ class TasksAdapter(Activity: FragmentActivity?, val mainScreenBinding: FragmentM
 
     fun replace(newData: List<ToDoTask>) {
         data.clear()
-        val filteredData = newData.filter { it.deadline.isAfter(LocalDate.now()) }
+        val filteredData = newData.filter { it.deadline.isAfter(LocalDate.now()) || it.deadline == LocalDate.now()  }
         val now = LocalDate.now()
         val startOfWeek = now.with(DayOfWeek.MONDAY)
-        val endOfWeek = now.with(DayOfWeek.SUNDAY)
-        val thisWeekTasks = filteredData.filter { it.deadline.isAfter(startOfWeek) && it.deadline.isBefore(endOfWeek) }
+        Log.println(Log.INFO, null, startOfWeek.toString())
+        val endOfWeek = startOfWeek.plusDays(6)
+        Log.println(Log.INFO, null, endOfWeek.toString())
+        val thisWeekTasks = filteredData.filter { (it.deadline.isAfter(startOfWeek) && it.deadline.isBefore(endOfWeek)) || it.deadline == endOfWeek }
+        Log.println(Log.INFO, null, thisWeekTasks.toString())
         mainScreenBinding.tasksAmountLabel.text = thisWeekTasks.size.toString()
         data.addAll(filteredData)
         notifyDataSetChanged()
